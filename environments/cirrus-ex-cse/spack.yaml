@@ -9,7 +9,6 @@ spack:
 
   specs:
   - python@3.11.7
-  - castep%gcc
   - quantum-espresso ^cmake@4 %gcc_all
   - openfoam-org%gcc
   - libxc%gcc
