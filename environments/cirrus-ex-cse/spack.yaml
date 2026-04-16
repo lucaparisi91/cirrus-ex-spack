@@ -53,7 +53,7 @@ spack:
       padding_length: 120
 
   mirrors:
-    licensed_packages: /work/y07/shared/cirrus-ex/cirrus-ex-software/dev/lparisi/sources/licensed_packages
+    licensed_packages:
 
   packages:
     castep:
