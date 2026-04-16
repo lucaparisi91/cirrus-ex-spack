@@ -11,6 +11,7 @@ spack:
   - python@3.11.7
   - quantum-espresso ^cmake@4 %gcc_all
   - openfoam-org%gcc
+  - castep %gcc_all
   - libxc%gcc
   - libxc%intel_all
   - py-torch  -cuda -rocm -valgrind ^openblas %gcc
@@ -52,7 +53,7 @@ spack:
       padding_length: 120
 
   mirrors:
-    licensed_packages: $spack/../cirrus-ex-cse/licensed_packages
+    licensed_packages: /work/y07/shared/cirrus-ex/cirrus-ex-software/dev/lparisi/sources/licensed_packages
 
   packages:
     castep:
