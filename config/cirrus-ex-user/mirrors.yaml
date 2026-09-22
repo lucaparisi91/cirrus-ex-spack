@@ -1,6 +1,6 @@
-mirrors:
-  cache:
-    url: $spack/../cirrus-ex/cache
-    binary: true
-    source: false
-    signed: false
+# mirrors:
+#   cache:
+#     url: $spack/../cirrus-ex/cache
+#     binary: true
+#     source: false
+#     signed: false

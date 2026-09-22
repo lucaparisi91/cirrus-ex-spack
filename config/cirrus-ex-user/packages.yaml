@@ -44,23 +44,18 @@ packages:
           - cpe/25.03
           - PrgEnv-gnu/8.6.0
           - gcc-native/14.2
-          - xpmem/0.2.119-1.3_gef379be13330
           - craype-x86-turin
           - craype-network-ofi
-          - libfabric/1.22.0
+          - libfabric/2.3.1
           - craype-x86-turin
-        
-        extra_rpaths:
-            - /opt/cray/libfabric/1.22.0/lib64/
-            - /opt/xpmem/lib64/
 
       
-      - spec: gcc@=14.2.1
-        extra_attributes:
-          compilers:
-            c: /opt/rh/gcc-toolset-14/root/usr/bin/gcc
-            cxx: /opt/rh/gcc-toolset-14/root/usr/bin/g++
-            fortran: /opt/rh/gcc-toolset-14/root/usr/bin/gfortran
+      # - spec: gcc@=14.2.1
+      #   extra_attributes:
+      #     compilers:
+      #       c: /opt/rh/gcc-toolset-14/root/usr/bin/gcc
+      #       cxx: /opt/rh/gcc-toolset-14/root/usr/bin/g++
+      #       fortran: /opt/rh/gcc-toolset-14/root/usr/bin/gfortran
   aocc:
     externals:
       - spec: aocc@=5.0.0
@@ -73,15 +68,11 @@ packages:
           - cpe/25.03
           - PrgEnv-aocc/8.6.0
           - aocc/5.0.0
-          - xpmem/0.2.119-1.3_gef379be13330
           - craype-x86-turin
           - craype-network-ofi
-          - libfabric/1.22.0
+          - libfabric/2.3.1
           - craype-x86-turin
         
-        extra_rpaths:
-            - /opt/cray/libfabric/1.22.0/lib64/
-            - /opt/xpmem/lib64/
   cce:
     externals:
       - spec: cce@=19.0.0
@@ -93,13 +84,10 @@ packages:
         modules:
           - PrgEnv-cray/8.6.0
           - cce/19.0.0
-          - xpmem/0.2.119-1.3_gef379be13330
-          - libfabric/1.22.0
+          - xpmem
+          - libfabric/2.3.1
           - craype-x86-turin
           - craype-network-ofi
-        extra_rpaths:
-          - /opt/cray/libfabric/1.22.0/lib64/
-          - /opt/xpmem/lib64/
   
   intel-oneapi-compilers:
     externals:
@@ -113,17 +101,14 @@ packages:
           - PrgEnv-intel/8.6.0
           - craype/2.7.34
           - intel/2025.0
-          - xpmem/0.2.119-1.3_gef379be13330
-          - libfabric/1.22.0
+          - xpmem
+          - libfabric/2.3.1
           - craype-x86-turin
           - craype-network-ofi
-        extra_rpaths:
-          - /opt/cray/libfabric/1.22.0/lib64/
-          - /opt/xpmem/lib64/
 
   netcdf-c:
     externals:
-      - spec: netcdf-c@4.9.0.1+mpi %gcc
+      - spec: netcdf-c@4.9.0.1+mpi %gcc@14.2
         modules:
           - cray-hdf5-parallel/1.14.3.5
           - cray-netcdf-hdf5parallel/4.9.0.17
@@ -151,7 +136,7 @@ packages:
 
   netcdf-fortran:
     externals:
-      - spec: netcdf-fortran@4.9.0.17%gcc
+      - spec: netcdf-fortran@4.9.0.17 %gcc@14.2
         modules:
           - cray-hdf5-parallel/1.14.3.5
           - cray-netcdf-hdf5parallel/4.9.0.17
@@ -177,9 +162,19 @@ packages:
       
     buildable: False
 
+
+  papi:
+    externals:
+      - spec: papi@7.2.0.1 %gcc@14.2
+        modules:
+          - papi/7.2.0.1
+        prefix: /opt/cray/pe/papi/7.2.0.1/
+    
+    buildable: False
+
   netcdf-cxx4:
     externals:
-      - spec: netcdf-cxx4@4.9.0.17%gcc
+      - spec: netcdf-cxx4@4.9.0.17 %gcc@14.2
         modules:
           - cray-hdf5-parallel/1.14.3.5
           - cray-netcdf-hdf5parallel/4.9.0.17
@@ -208,7 +203,7 @@ packages:
 
   parallel-netcdf:
     externals:
-      - spec: parallel-netcdf@1.12.3.1%gcc
+      - spec: parallel-netcdf@1.12.3.1 %gcc@14.2
         modules:
           - cray-parallel-netcdf/1.12.3.17
         prefix: /opt/cray/pe/parallel-netcdf/1.12.3.17/GNU/12.2
@@ -234,7 +229,7 @@ packages:
 
   cray-mpich:
     externals:
-    - spec: cray-mpich@8.1.32 +wrappers %gcc 
+    - spec: cray-mpich@8.1.32 +wrappers %gcc@14.2
       modules:
       - cray-mpich/8.1.32
       prefix: /opt/cray/pe/mpich/8.1.32/ofi/GNU/11.2
@@ -260,7 +255,7 @@ packages:
 
   hdf5:
     externals:
-      - spec: hdf5@1.14.3.5+mpi%gcc
+      - spec: hdf5@1.14.3.5+mpi %gcc@14.2
         modules:
           - cray-mpich/8.1.32
           - cray-hdf5-parallel/1.14.3.5
@@ -293,10 +288,10 @@ packages:
 
   libfabric:
     externals:
-    - spec: libfabric@1.12.1.2.2.0.0
+    - spec: libfabric@2.3.1
       modules:
-      - libfabric/1.22.0
-      prefix: /opt/cray/libfabric/1.22.0
+      - libfabric/2.3.1
+      prefix: /opt/cray/libfabric/2.3.1
     buildable: false
 
   cray-fftw:
@@ -310,7 +305,7 @@ packages:
 
   cray-libsci:
     externals:
-      - spec: cray-libsci@25.03.0 %gcc
+      - spec: cray-libsci@25.03.0 %gcc@14.2
         modules:
         - cray-libsci/25.03.0
         prefix: /opt/cray/pe/libsci/25.03.0/GNU/12.2/x86_64/
@@ -346,31 +341,31 @@ packages:
   
   py-numpy:
     externals:
-     - spec: py-numpy@1.24.4
+     - spec: py-numpy@1.24.4  ^python@3.11.7
        prefix:  /opt/cray/pe/python/3.11.7
 
 
   py-mpi4py:
     externals:
-     - spec: py-mpi4py@3.1.4
+     - spec: py-mpi4py@3.1.4  ^python@3.11.7
        prefix:  /opt/cray/pe/python/3.11.7
     buildable: false
     
   py-scipy:
     externals:
-     - spec: py-scipy@1.10.1
+     - spec: py-scipy@1.10.1  ^python@3.11.7
        prefix:  /opt/cray/pe/python/3.11.7
 
 
   py-cython:
     externals:
-     - spec: py-cython@0.29.36
+     - spec: py-cython@0.29.36  ^python@3.11.7
 
        prefix:  /opt/cray/pe/python/3.11.7
 
   py-setuptools:
     externals:
-     - spec: py-setuptools@70.0.0
+     - spec: py-setuptools@70.0.0  ^python@3.11.7
        prefix:  /opt/cray/pe/python/3.11.7
 
   slurm:
