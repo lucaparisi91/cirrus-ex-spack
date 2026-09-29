@@ -8,52 +8,74 @@ spack:
   - $spack/../environments/cirrus-ex-cse/modules.yaml
 
   specs:
-  - python@3.11.7
-  - castep%gcc
-  - quantum-espresso ^cmake@4 %gcc_all
-  - openfoam-org%gcc
-  - libxc%gcc
-  - libxc%intel_all
-  - py-torch  -cuda -rocm -valgrind ^openblas %gcc
-  - python-venv %gcc_all
-  - wannier90 %gcc_all
-  - wannier90 %intel_all
-  - lammps@20250612 +amoeba +asphere +bocs +body +bpm +brownian +cg-dna +cg-spica +class2 +colloid +colvars +compress +coreshell +dielectric +diffraction +dipole +dpd-basic +dpd-meso +dpd-react +dpd-smooth +drude +eff +electrode +extra-command +extra-compute +extra-dump +extra-fix +extra-molecule +extra-pair +fep +granular +interlayer +kspace +lepton +machdyn +manybody +mc +meam +mesont +misc +ml-iap +ml-pod +ml-snap +ml-uf3 +mofff +molecule +openmp +opt +orient +peri +phonon +plugin +qeq +reaction +reaxff +replica +rheo +rigid +shock +sph +spin +srd +tally +uef +voronoi +yaff %gcc_all 
-  - cmake@4.1.2  %gcc_all
-  - petsc@3.23.4 %gcc_all
-  - petsc@3.23.4 %cce_all
-  - metis %gcc_all
-  - metis %aocc_all
-  - metis %intel_all
-  - metis %cce_all
-  - parmetis %gcc_all
-  - parmetis %intel_all
-  - parmetis %cce_all
-  - parmetis %aocc_all
-  - eigen %gcc_all
-  - eigen %cce_all
-  - eigen %intel_all
-  - eigen %aocc_all
-  - likwid %gcc_all
-  - cp2k@2025.2 +mpi +enable_regtests ^openblas ^amdscalapack %gcc_all
-  - openfoam -cgal %gcc_all
-  - tmux %gcc_all
-  - petsc@3.23.4 %intel-oneapi-mkl %intel_all
-  - petsc@3.23.4 -fortran %aocc_all
-  - gromacs %gcc
-  - subversion %gcc
+  - group: general
+    specs:
+    - python@3.11.7
+
+  - group: gcc-stack
+    specs:
+    - castep%%gcc
+    - quantum-espresso ^cmake@4 %%gcc_all
+    - openfoam-org%%gcc
+    - libxc%%gcc
+    - py-torch  -cuda -rocm -valgrind ^openblas  %%gcc
+    - python-venv %%gcc_all
+    - wannier90 %%gcc_all
+    - lammps@20250612 +amoeba +asphere +bocs +body +bpm +brownian +cg-dna +cg-spica +class2 +colloid +colvars +compress +coreshell +dielectric +diffraction +dipole +dpd-basic +dpd-meso +dpd-react +dpd-smooth +drude +eff +electrode +extra-command +extra-compute +extra-dump +extra-fix +extra-molecule +extra-pair +fep +granular +interlayer +kspace +lepton +machdyn +manybody +mc +meam +mesont +misc +ml-iap +ml-pod +ml-snap +ml-uf3 +mofff +molecule +openmp +opt +orient +peri +phonon +plugin +qeq +reaction +reaxff +replica +rheo +rigid +shock +sph +spin +srd +tally +uef +voronoi +yaff %%gcc_all
+    - cmake@4.1.2 %%gcc_all
+    - petsc@3.23.4 %%gcc_all
+    - metis %%gcc_all
+    - parmetis %%gcc_all
+    - eigen %%gcc_all
+    - likwid %%gcc_all
+    - cp2k@2025.2 +mpi +enable_regtests ^openblas ^amdscalapack %%gcc_all
+    - openfoam -cgal %%gcc_all
+    - tmux %%gcc_all
+    - gromacs %%gcc
+    - subversion %%gcc
+    override:
+      packages:
+        cray-mpich:
+          require:
+          - "%gcc@14.2"
+
+  - group: cce-stack
+    specs:
+    - petsc@3.23.4 %%cce_all ^cray-libsci 
+    - metis %%cce_all
+    - parmetis %%cce_all
+    - eigen %%cce_all
+
+  - group: aocc-stack
+    specs:
+    - metis %%aocc_all
+    - parmetis %%aocc_all
+    - eigen %%aocc_all
+    - petsc@3.23.4 -fortran %%aocc_all
+
+  - group: intel-stack
+    specs:
+    - libxc%%intel_all
+    - wannier90 %%intel_all
+    - metis %%intel_all
+    - parmetis %%intel_all
+    - eigen %%intel_all
+    - petsc@3.23.4 %%intel-oneapi-mkl %%intel_all
 
   concretizer:
     unify: false
+    duplicates:
+      strategy: minimal
+
     'splice:':
-      automatic: false
+      automatic: true
   config:
     install_tree:
       root: $spack/../cirrus-ex-cse/opt
       padding_length: 120
 
-  mirrors:
-    licensed_packages: $spack/../cirrus-ex-cse/licensed_packages
+  # mirrors:
+  #   licensed_packages: $spack/../cirrus-ex-cse/licensed_packages
 
   packages:
     castep:

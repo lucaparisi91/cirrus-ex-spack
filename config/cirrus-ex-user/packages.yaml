@@ -47,8 +47,6 @@ packages:
           - craype-x86-turin
           - craype-network-ofi
           - libfabric/2.3.1
-          - craype-x86-turin
-
       
       # - spec: gcc@=14.2.1
       #   extra_attributes:
@@ -71,7 +69,6 @@ packages:
           - craype-x86-turin
           - craype-network-ofi
           - libfabric/2.3.1
-          - craype-x86-turin
         
   cce:
     externals:
@@ -230,23 +227,15 @@ packages:
   cray-mpich:
     externals:
     - spec: cray-mpich@8.1.32 +wrappers %gcc@14.2
-      modules:
-      - cray-mpich/8.1.32
       prefix: /opt/cray/pe/mpich/8.1.32/ofi/GNU/11.2
 
     - spec: cray-mpich@8.1.32 +wrappers %cce
-      modules:
-      - cray-mpich/8.1.32
       prefix: /opt/cray/pe/mpich/8.1.32/ofi/CRAYCLANG/18.0
     
     - spec: cray-mpich@8.1.32 +wrappers %intel-oneapi-compilers
-      modules:
-      - cray-mpich/8.1.32
       prefix: /opt/cray/pe/mpich/8.1.32/ofi/INTEL/2022.1/
 
     - spec: cray-mpich@8.1.32 +wrappers %aocc
-      modules:
-      - cray-mpich/8.1.32
       prefix: /opt/cray/pe/mpich/8.1.32/ofi/AOCC/4.1/
     
     
@@ -257,13 +246,11 @@ packages:
     externals:
       - spec: hdf5@1.14.3.5+mpi %gcc@14.2
         modules:
-          - cray-mpich/8.1.32
           - cray-hdf5-parallel/1.14.3.5
         prefix: /opt/cray/pe/hdf5-parallel/1.14.3.5/GNU/12.2
 
       - spec: hdf5@1.14.3.5+mpi%cce
         modules:
-          - cray-mpich/8.1.32
           - cray-hdf5-parallel/1.14.3.5
         prefix: /opt/cray/pe/hdf5-parallel/1.14.3.5/CRAYCLANG/18.0     
       - spec: hdf5@1.14.3.5+mpi%intel-oneapi-compilers
@@ -274,7 +261,6 @@ packages:
       
       - spec: hdf5@1.14.3.5+mpi%aocc
         modules:
-          - cray-mpich/8.1.32
           - cray-hdf5-parallel/1.14.3.5
         prefix: /opt/cray/pe/hdf5-parallel/1.14.3.5/AOCC/4.1/
         
@@ -293,12 +279,11 @@ packages:
       - libfabric/2.3.1
       prefix: /opt/cray/libfabric/2.3.1
     buildable: false
-
+  
   cray-fftw:
     externals:
-    - spec: cray-fftw@3.3.10.10
+    - spec: cray-fftw@3.3.10.10 +openmp
       modules:
-      - craype-x86-turin
       - cray-fftw/3.3.10.10
       prefix: /opt/cray/pe/fftw/3.3.10.10/x86_turin/
     buildable: false
@@ -370,7 +355,7 @@ packages:
 
   slurm:
     externals:
-    - spec: slurm@25.05.4
+    - spec: slurm@25.05.9
       prefix: /usr
   openssl:
     externals:
