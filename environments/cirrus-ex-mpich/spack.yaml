@@ -1,0 +1,31 @@
+# This is a Spack Environment file.
+#
+# It describes a set of packages to be installed, along with
+# configuration settings.
+
+spack:
+
+  specs:
+  - group: gcc-stack
+    specs:
+      - gcc@16 bootstrap=false
+      - mpich +slurm device=ch4 netmod=ofi pmi=cray %gcc@16
+  
+  concretizer:
+    unify: false
+    'splice:':
+      automatic: true
+  
+  packages:
+    mpi::
+      buildable : true
+  config:
+    install_tree:
+      root: $env/opt
+      padding_length: 120
+  
+  
+  view: false
+
+  repos:
+  - $env/spack_repo/cirrus_ex
