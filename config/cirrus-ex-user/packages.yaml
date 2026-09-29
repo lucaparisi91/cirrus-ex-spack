@@ -352,10 +352,14 @@ packages:
     externals:
      - spec: py-setuptools@70.0.0  ^python@3.11.7
        prefix:  /opt/cray/pe/python/3.11.7
-
+  cray-pmi:
+    externals:
+    - spec: cray-pmi@6.1.15
+      prefix: /opt/cray/pe/pmi/6.1.15
+    buildable: false
   slurm:
     externals:
-    - spec: slurm@25.05.9
+    - spec: slurm@25.05.9 +pmix
       prefix: /usr
   openssl:
     externals:
@@ -367,6 +371,7 @@ packages:
         - "cflags='--for-linker --undefined-version' ldflags='--for-linker --undefined-version'"
         when: "%cce"
   
+    
   alsa-lib:
     require:
       - any_of:
