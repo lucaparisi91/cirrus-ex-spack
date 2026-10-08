@@ -1,0 +1,32 @@
+
+- name: Prepare root modules
+  hosts: localhost
+  tasks:
+    - name: Create Spack module directory
+      ansible.builtin.file:
+        path: "{{ modules_root }}/utils/core/spack"
+        state: directory
+    - name: Create CSE environment module directory
+      ansible.builtin.file:
+        path: "{{ modules_root }}/utils/core/cse_env"
+        state: directory
+    - name: Generate the spack module
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/spack.lua.j2"
+        dest: "{{ modules_root }}/utils/core/spack/{{ spack_version }}.lua"
+    
+    - name: Generate the CSE environment module
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/cse_env.lua.j2"
+        dest: "{{ modules_root }}/utils/core/cse_env/{{ cse_env_version }}.lua"
+    
+    - name: Install the spack environment
+      ansible.builtin.shell: |
+        module use "{{ modules_root }}/utils/core"
+        module load spack/{{ spack_version }}
+        spack env activate -p "{{ cse_software_root }}/environments/cirrus-ex-cse"
+        spack concretize
+        spack install
+      args:
+        executable: /bin/bash
+    
