@@ -5,7 +5,7 @@
 
       use_view: false
       roots:
-        lmod: $spack/../cirrus-ex-cse/modules
+        lmod: $env/modules
       lmod:
         projections:
           all: '{name}/{version}'

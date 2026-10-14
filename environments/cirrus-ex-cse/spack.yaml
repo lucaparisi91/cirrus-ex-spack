@@ -1,20 +1,20 @@
-# This is a Spack Environment file.
-#
-# It describes a set of packages to be installed, along with
-# configuration settings.
+  # This is a Spack Environment file.
+  #
+  # It describes a set of packages to be installed, along with
+  # configuration settings.
 
 spack:
   include:
-  - $spack/../environments/cirrus-ex-cse/modules.yaml
-
+  - modules.yaml
   specs:
   - group: general
     specs:
     - python@3.11.7
-
+  
   - group: gcc-stack
     specs:
-    - castep%%gcc
+    - mpifileutils
+    - castep@26.11 %%gcc
     - quantum-espresso ^cmake@4 %%gcc_all
     - openfoam-org%%gcc
     - libxc%%gcc
@@ -37,11 +37,11 @@ spack:
       packages:
         cray-mpich:
           require:
-          - "%gcc@14.2"
+          - '%gcc@14.2'
 
   - group: cce-stack
     specs:
-    - petsc@3.23.4 %%cce_all ^cray-libsci 
+    - petsc@3.23.4 %%cce_all ^cray-libsci
     - metis %%cce_all
     - parmetis %%cce_all
     - eigen %%cce_all
@@ -71,12 +71,9 @@ spack:
       automatic: true
   config:
     install_tree:
-      root: $spack/../cirrus-ex-cse/opt
+      root: $env/opt
       padding_length: 120
-
-  # mirrors:
-  #   licensed_packages: $spack/../cirrus-ex-cse/licensed_packages
-
+  
   packages:
     castep:
       permissions:

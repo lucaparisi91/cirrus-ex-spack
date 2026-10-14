@@ -1,7 +1,0 @@
-modules_root: "/epccfs/z19/z19/shared/lparisi/cirrus-ex-lmod/dev"
-spack_version: "1.2.2" # The spack version to use
-cse_env_version: "0.3" # The version of the CSE environment and configuration
-modules_root: "/epccfs/z19/z19/shared/lparisi/cirrus-ex-lmod/dev"
-spack_version: "1.2.2" # The spack version to use
-cse_env_version: "0.3" # The version of the CSE environment and configuration
-cse_software_root: "{{ playbook_dir }}/../.." # Directory containing the root of the epcc-spack repo
