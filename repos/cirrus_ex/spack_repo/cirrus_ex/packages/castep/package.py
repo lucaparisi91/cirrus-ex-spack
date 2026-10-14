@@ -23,10 +23,13 @@ class Castep(CMakePackage):
 
     maintainers("NMannall")
 
+    version("26.11", sha256="cd38ec9e87fd92b91fe7910179acad6486ee57935832846959151ec406fb5fb6")
     version("24.1", sha256="97d77a4f3ce3f5c5b87e812f15a2c2cb23918acd7034c91a872b6d66ea0f7dbb")
+
 
     depends_on("cray-fftw")
     depends_on("python")
+    depends_on("py-pip", type="build")
     depends_on("mpi")
     depends_on("blas")
     depends_on("lapack")
@@ -36,8 +39,8 @@ class Castep(CMakePackage):
     depends_on("cxx", type="build")
     depends_on("fortran", type="build")
     depends_on("gmake", type="build")
+    depends_on("python", type=("build","run"))
     
-
     patch("24.1.patch", when="@24.1")
     patch("libxc_mod.patch", when="@24.1")
 
@@ -54,4 +57,10 @@ class Castep(CMakePackage):
             self.define("WITH_LIBXC", True)
         ]
         return args
+
+    def setup_build_environment(self, env):
+        # Ensure pip is available for the install phase via python -m pip
+        # py-pip installs into the python prefix, not its own
+        python_prefix = self.spec["python"].prefix
+        env.prepend_path("PATH", python_prefix.bin)
 
