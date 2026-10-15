@@ -257,7 +257,6 @@ packages:
         prefix: /opt/cray/pe/hdf5-parallel/1.14.3.5/CRAYCLANG/18.0     
       - spec: hdf5@1.14.3.5+mpi%intel-oneapi-compilers
         modules:
-          - cray-mpich/8.1.32
           - cray-hdf5-parallel/1.14.3.5
         prefix: /opt/cray/pe/hdf5-parallel/1.14.3.5/INTEL/2023.2/
       
