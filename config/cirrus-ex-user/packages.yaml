@@ -292,23 +292,15 @@ packages:
   cray-libsci:
     externals:
       - spec: cray-libsci@25.03.0 %gcc@14.2
-        modules:
-        - cray-libsci/25.03.0
         prefix: /opt/cray/pe/libsci/25.03.0/GNU/12.2/x86_64/
       
       - spec: cray-libsci@25.03.0%cce
-        modules:
-        - cray-libsci/25.03.0
         prefix: /opt/cray/pe/libsci/25.03.0/CRAY/18.0/x86_64/
       
       - spec: cray-libsci@25.03.0 %aocc
-        modules:
-        - cray-libsci/25.03.0
         prefix: /opt/cray/pe/libsci/25.03.0/AOCC/4.1/x86_64/
       
       - spec: cray-libsci@25.03.0 %intel-oneapi-compilers
-        modules:
-        - cray-libsci/25.03.0
         prefix: /opt/cray/pe/libsci/25.03.0/INTEL/2025.0/x86_64/
 
   
