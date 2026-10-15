@@ -79,6 +79,7 @@ packages:
             cxx: CC
             fortran: ftn
         modules:
+          - cpe/25.03
           - PrgEnv-cray/8.6.0
           - cce/19.0.0
           - xpmem
@@ -95,6 +96,7 @@ packages:
             cxx: CC
             fortran: ftn
         modules:
+
           - PrgEnv-intel/8.6.0
           - craype/2.7.34
           - intel/2025.0
