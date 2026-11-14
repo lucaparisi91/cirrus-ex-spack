@@ -5,7 +5,7 @@
 
       use_view: false
       roots:
-        lmod: /epccfs/z19/z19/shared/lparisi/cirrus-ex-lmod/dev/apps/cse_env/0.3
+        lmod: $env/modules
       lmod:
         projections:
           all: '{name}/{version}'
