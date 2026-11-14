@@ -5,7 +5,7 @@
 
       use_view: false
       roots:
-        lmod: $env/modules
+        lmod: /epccfs/z19/z19/shared/lparisi/cirrus-ex-lmod/dev/apps/cse_env/0.3
       lmod:
         projections:
           all: '{name}/{version}'
@@ -37,7 +37,6 @@
           - gromacs%gcc
           - openfoam-org%gcc
           - openfoam
-          - lammps
           - py-torch %gcc
           - py-pyyaml 
           - py-jinja2
