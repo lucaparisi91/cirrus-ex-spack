@@ -11,4 +11,8 @@
 #   ~/.spack/repos.yaml
 # -------------------------------------------------------------------------
 repos:
-  - ${SPACK_EPCC_REPOS}/cirrus_ex/spack_repo/cirrus_ex
+  cirrus_ex: ${SPACK_EPCC_REPOS}/cirrus_ex/spack_repo/cirrus_ex
+  builtin:
+    git: https://github.com/spack/spack-packages.git
+    commit: 3ebd010
+    destination: ${SPACK_EPCC_REPOS}/builtin/spack_repo/builtin

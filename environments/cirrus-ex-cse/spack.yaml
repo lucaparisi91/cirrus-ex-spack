@@ -13,26 +13,27 @@ spack:
   
   - group: gcc-stack
     specs:
-    - mpifileutils
+    - mpifileutils@0.12 %%gcc_all
     - castep@26.11 %%gcc
-    - quantum-espresso ^cmake@4 %%gcc_all
-    - openfoam-org%%gcc
-    - libxc%%gcc
-    - py-torch  -cuda -rocm -valgrind ^openblas  %%gcc
+    - quantum-espresso@7.4.1 ^cmake@4 %%gcc_all
+    - openfoam-org@12 %%gcc
+    - libxc@7.1.2 %%gcc
+    - py-torch@2.13.0  -cuda -rocm -valgrind ^openblas  %%gcc
     - python-venv %%gcc_all
-    - wannier90 %%gcc_all
-    - lammps@20250612 +amoeba +asphere +bocs +body +bpm +brownian +cg-dna +cg-spica +class2 +colloid +colvars +compress +coreshell +dielectric +diffraction +dipole +dpd-basic +dpd-meso +dpd-react +dpd-smooth +drude +eff +electrode +extra-command +extra-compute +extra-dump +extra-fix +extra-molecule +extra-pair +fep +granular +interlayer +kspace +lepton +machdyn +manybody +mc +meam +mesont +misc +ml-iap +ml-pod +ml-snap +ml-uf3 +mofff +molecule +openmp +opt +orient +peri +phonon +plugin +qeq +reaction +reaxff +replica +rheo +rigid +shock +sph +spin +srd +tally +uef +voronoi +yaff %%gcc_all
+    - wannier90@4.0.2 %%gcc_all
+    - lammps@20260704 +amoeba +asphere +bocs +body +bpm +brownian +cg-dna +cg-spica +class2 +colloid +colvars +compress +coreshell +dielectric +diffraction +dipole +dpd-basic +dpd-meso +dpd-react +dpd-smooth +drude +eff +electrode +extra-command +extra-compute +extra-dump +extra-fix +extra-molecule +extra-pair +fep +granular +interlayer +kspace +lepton +machdyn +manybody +mc +meam +mesont +misc +ml-iap +ml-pod +ml-snap +ml-uf3 +mofff +molecule +openmp +opt +orient +peri +phonon +plugin +qeq +reaction +reaxff +replica +rheo +rigid +shock +sph +spin +srd +tally +uef +voronoi +yaff %%gcc_all
     - cmake@4.1.2 %%gcc_all
-    - petsc@3.23.4 %%gcc_all
-    - metis %%gcc_all
-    - parmetis %%gcc_all
-    - eigen %%gcc_all
-    - likwid %%gcc_all
+    - petsc@3.26.0 %%gcc_all
+    - metis@5.1.0 %%gcc_all
+    - parmetis@4.0.3 %%gcc_all
+    - eigen@5.0.1 %%gcc_all
+    - likwid@5.5.2 %%gcc_all
     - cp2k@2025.2 +mpi +enable_regtests ^openblas ^amdscalapack %%gcc_all
-    - openfoam -cgal %%gcc_all
-    - tmux %%gcc_all
-    - gromacs %%gcc
-    - subversion %%gcc
+    - openfoam@2412 -cgal %%gcc_all
+    - tmux@3.6a %%gcc_all
+    - gromacs@2026.3 %%gcc
+    - subversion@1.14.5 %%gcc
+
     override:
       packages:
         cray-mpich:
@@ -41,28 +42,26 @@ spack:
 
   - group: cce-stack
     specs:
-    - petsc@3.23.4 %%cce_all ^cray-libsci
-    - metis %%cce_all
-    - parmetis %%cce_all
-    - eigen %%cce_all
-    - lammps@20250612 +amoeba +asphere +bocs +body +bpm +brownian +cg-dna +cg-spica +class2 +colloid +colvars +compress +coreshell +dielectric +diffraction +dipole +dpd-basic +dpd-meso +dpd-react +dpd-smooth +drude +eff +electrode +extra-command +extra-compute +extra-dump +extra-fix +extra-molecule +extra-pair +fep +granular +interlayer +kspace +lepton +machdyn +manybody +mc +meam +mesont +misc +ml-iap +ml-pod +ml-snap +ml-uf3 +mofff +molecule +openmp +opt +orient +peri +phonon +plugin +qeq +reaction +reaxff +replica +rheo +rigid +shock +sph +spin +srd +tally +uef +voronoi +yaff %%gcc_all
-
+      - petsc@3.26.0 %%cce_all
+      - metis@5.1.0 %%cce_all
+      - parmetis@4.0.3 %%cce_all
+      - eigen@5.0.1 %%cce_all
 
   - group: aocc-stack
     specs:
-    - metis %%aocc_all
-    - parmetis %%aocc_all
-    - eigen %%aocc_all
-    - petsc@3.23.4 -fortran %%aocc_all
+      - petsc@3.26.0 %%aocc_all
+      - metis@5.1.0 %%aocc_all
+      - parmetis@4.0.3 %%aocc_all
+      - eigen@5.0.1 %%aocc_all
 
   - group: intel-stack
     specs:
-    - libxc%%intel_all
-    - wannier90 %%intel_all
-    - metis %%intel_all
-    - parmetis %%intel_all
-    - eigen %%intel_all
-    - petsc@3.23.4 %%intel-oneapi-mkl %%intel_all
+    - libxc@7.1.2 %%intel_all
+    - wannier90@4.0.2 %%intel_all
+    - metis@5.1.0%%intel_all
+    - parmetis@4.0.3  %%intel_all
+    - eigen@5.0.1 %%intel_all
+    - petsc@3.26.0 %%intel-oneapi-mkl %%intel_all
 
   concretizer:
     unify: false
